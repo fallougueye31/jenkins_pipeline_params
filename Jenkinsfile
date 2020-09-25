@@ -49,10 +49,11 @@ pipeline {
                         // Show the select input modal
                        def INPUT_PARAMS = input message: 'Please Provide Parameters', ok: 'Next',
                                         parameters: [
-                                        booleanParam(name: 'ENVIRONMENT_HEPROD', defaultValue: false, description: ''),
+                                        booleanParam(name: 'ENVIRONMENT_HEPROD', defaultValue: true, description: ''),
                                         booleanParam(name: 'ENVIRONMENT_PROD', defaultValue: false, description: '')]
                         env.ENVIRONMENT_HEPROD = INPUT_PARAMS.ENVIRONMENT_HEPROD
                         env.ENVIRONMENT_PROD = INPUT_PARAMS.ENVIRONMENT_PROD
+						
                     }
                 }
             }
@@ -61,12 +62,14 @@ pipeline {
         stage('Build Deploy Code HE PROD') {
 			when {
                 expression {
-                    return ENVIRONMENT_HEPROD == "hepro"
+                    return ENVIRONMENT_HEPROD == "true"
                 }
             }
             steps {
                 sh """
                 echo "Building Artifact "
+				echo "${ENVIRONMENT_PROD}"
+				
                 """
 
                 sh """
@@ -78,7 +81,7 @@ pipeline {
 		stage('Build Deploy Code - PROD') {
 			when {
                 expression {
-                    return ENVIRONMENT_PROD == "pro"
+                    return ENVIRONMENT_PROD == "true"
                 }
             }
             steps {
