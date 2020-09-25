@@ -32,9 +32,10 @@ pipeline {
         stage('Code Analysis') {
 			input {
 				message 'Build Docker image'
-				parameters {
-					booleanParam(name: 'BUILD_DOCKER_IMAGE', defaultValue: true, description: 'Uncheck to skip creation of Docker image.')
-					}
+				parameters ([
+					booleanParam(name: 'BUILD_DOCKER_IMAGE1', defaultValue: false, description: ''),
+					booleanParam(name: 'BUILD_DOCKER_IMAGE2', defaultValue: true, description: '')
+					])
 				}
             steps {
 				
