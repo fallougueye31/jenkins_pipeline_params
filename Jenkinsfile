@@ -47,11 +47,11 @@ pipeline {
                     script {
                         // Show the select input modal
                        def INPUT_PARAMS = input message: 'Please Provide Parameters', ok: 'Next',
-                                        parameters: {
-											choice(name: 'CHOICE',
-											choices: ['hepro, pro'], 
-											description: 'Please select the Environment')
-										}
+                                        parameters: [
+                                        choice(name: 'ENVIRONMENT_HEPROD', choices: ['hepro'], description: 'Please select the Environment'),
+                                        choice(name: 'ENVIRONMENT_PROD', choices: ['pro'], description: 'Please select the Environment')]
+                        env.ENVIRONMENT_HEPROD = INPUT_PARAMS.ENVIRONMENT_HEPROD
+                        env.ENVIRONMENT_PROD = INPUT_PARAMS.ENVIRONMENT_PROD
                     }
                 }
             }
@@ -60,7 +60,7 @@ pipeline {
         stage('Build Deploy Code HE PROD') {
 			when {
                 expression {
-                    return "${INPUT_PARAMS.CHOICE}" == "hepro"
+                    return ENVIRONMENT_HEPROD == "hepro"
                 }
             }
             steps {
@@ -77,7 +77,7 @@ pipeline {
 		stage('Build Deploy Code - PROD') {
 			when {
                 expression {
-                    return "${INPUT_PARAMS.CHOICE}"== "pro"
+                    return ENVIRONMENT_PROD == "pro"
                 }
             }
             steps {
