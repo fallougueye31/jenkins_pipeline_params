@@ -48,8 +48,8 @@ pipeline {
                         // Show the select input modal
                        def INPUT_PARAMS = input message: 'Please Provide Parameters', ok: 'Next',
                                         parameters: [
-                                        choice(name: 'ENVIRONMENT_HEPROD', choices: ['hepro'], description: 'Please select the Environment'),
-                                        choice(name: 'ENVIRONMENT_PROD', choices: ['pro'], description: 'Please select the Environment')]
+                                        //extended-choice(name: 'ENVIRONMENT_HEPROD', choices: ['hepro'], description: 'Please select the Environment'),
+                                        extended-choice(name: 'ENVIRONMENT_PROD', values: ['hepro','pro'], description: 'Please select the Environment', type = 'PT_CHECKBOX' )]
                         env.ENVIRONMENT_HEPROD = INPUT_PARAMS.ENVIRONMENT_HEPROD
                         env.ENVIRONMENT_PROD = INPUT_PARAMS.ENVIRONMENT_PROD
                     }
