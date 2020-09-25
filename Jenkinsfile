@@ -33,7 +33,7 @@ pipeline {
 			input {
 				message 'Build Docker image'
 				parameters {
-					booleanParam(name: 'BUILD_DOCKER_IMAGE1', defaultValue: false, description: ''),
+					booleanParam(name: 'BUILD_DOCKER_IMAGE1', defaultValue: false, description: '')
 					}
 				}
             steps {
