@@ -43,7 +43,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                timeout(time: 30, unit: 'SECONDS') {
+                timeout(time: 30, unit: 'MINUTES') {
                     script {
                         // Show the select input modal
                        def INPUT_PARAMS = input message: 'Please Provide Parameters', ok: 'Next',
