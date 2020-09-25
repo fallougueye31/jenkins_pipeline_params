@@ -60,7 +60,7 @@ pipeline {
         stage('Build Deploy Code HE PROD') {
 			when {
                 expression {
-                    return "${params.CHOICE}" == "hepro"
+                    return "${INPUT_PARAMS.CHOICE}" == "hepro"
                 }
             }
             steps {
@@ -77,7 +77,7 @@ pipeline {
 		stage('Build Deploy Code - PROD') {
 			when {
                 expression {
-                    return "${params.CHOICE}"== "pro"
+                    return "${INPUT_PARAMS.CHOICE}"== "pro"
                 }
             }
             steps {
