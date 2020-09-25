@@ -30,10 +30,14 @@ pipeline {
         }
 
         stage('Code Analysis') {
-            steps {
+			input {
+				message 'Build Docker image'
 				parameters {
-            booleanParam(name: 'BUILD_DOCKER_IMAGE', defaultValue: true, description: 'Uncheck to skip creation of Docker image.')
-			}
+					booleanParam(name: 'BUILD_DOCKER_IMAGE', defaultValue: true, description: 'Uncheck to skip creation of Docker image.')
+					}
+				}
+            steps {
+				
                 sh """
                 echo "Running Code Analysis ${BUILD_DOCKER_IMAGE}"
                 """
