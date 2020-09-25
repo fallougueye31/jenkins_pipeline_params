@@ -32,8 +32,8 @@ pipeline {
         stage('Code Analysis') {
 			input {
 				message 'Build Docker image'
-				parameters {
-					booleanParam(name: 'BUILD_DOCKER_IMAGE1', defaultValue: false, description: '')
+				parameters [{
+					booleanParam(name: 'BUILD_DOCKER_IMAGE', defaultValue: false, description: '')
 					}
 				}
             steps {
@@ -55,8 +55,8 @@ pipeline {
                         // Show the select input modal
                        def INPUT_PARAMS = input message: 'Please Provide Parameters', ok: 'Next',
                                         parameters: [
-                                        choice(name: 'ENVIRONMENT_HEPROD', choices: ['hepro'], description: 'Please select the Environment'),
-                                        choice(name: 'ENVIRONMENT_PROD', choices: ['pro'], description: 'Please select the Environment')]
+                                        booleanParam(name: 'ENVIRONMENT_HEPROD', defaultValue: false, description: ''),
+                                        booleanParam(name: 'ENVIRONMENT_PROD', defaultValue: false, description: '')]
                         env.ENVIRONMENT_HEPROD = INPUT_PARAMS.ENVIRONMENT_HEPROD
                         env.ENVIRONMENT_PROD = INPUT_PARAMS.ENVIRONMENT_PROD
                     }
