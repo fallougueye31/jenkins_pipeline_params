@@ -30,12 +30,6 @@ pipeline {
         }
 
         stage('Code Analysis') {
-			input {
-				message 'Build Docker image'
-				parameters [{
-					booleanParam(name: 'BUILD_DOCKER_IMAGE', defaultValue: false, description: '')
-					}
-				}
             steps {
 				
                 sh """
