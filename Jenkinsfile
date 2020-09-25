@@ -33,7 +33,7 @@ pipeline {
             steps {
 				
                 sh """
-                echo "Running Code Analysis ${BUILD_DOCKER_IMAGE}"
+                echo "Running Code Analysis "
                 """
             }
         }
